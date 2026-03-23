@@ -13,6 +13,7 @@ from nltk.tokenize import word_tokenize
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('punkt_tab')
+
 def text_tokenization(text):
     #imports stopwords, sets and tokenizes text. 
     #Filters by comparing the tokens to stopwords list
@@ -21,16 +22,17 @@ def text_tokenization(text):
     tokens = word_tokenize(text.lower())
     filtered_tokens = [word for word in tokens if word not in stop_words]
     #test prints to ensure tokenization works right
-    print("Original:", tokens)
-    print("Filtered:", filtered_tokens)
+    return filtered_tokens
 
     
 def generate_confusion_matrix():
     mtrx = [[],[],[],[],[],[]]
     return mtrx
 
-def generate ():
+#function to run 
+def build_naive_bayes():
     return 1
+
 def main():
 
     conf = generate_confusion_matrix()

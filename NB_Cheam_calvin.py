@@ -7,16 +7,23 @@ import nltk
 import re 
 import math 
 
+#import and setup for tokenization and stopwords
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+nltk.download('stopwords')
+nltk.download('punkt')
 
-def normalize_text(text):
-    ft = text.lower()
-    for char in ft:
-        if not char.isalnum():
-            #remove
-            print()
-    return ft
+def text_tokenization(text):
+    #imports stopwords, sets and tokenizes text. 
+    #Filters by comparing the tokens to stopwords list
+
+    stop_words = set(stopwords.words('english'))
+    tokens = word_tokenize(text.lower())
+    filtered_tokens = [word for word in tokens if word not in stop_words]
+    #test prints to ensure tokenization works right
+    print("Original:", tokens)
+    print("Filtered:", filtered_tokens)
+
     
 def generate_confusion_matrix():
     mtrx = [[],[],[],[],[],[]]
@@ -27,8 +34,12 @@ def generate ():
 def main():
 
     conf = generate_confusion_matrix()
-    for row in conf:
-        print(row)
-    return -1
+    file_path = "training_biology.txt"
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            raw_text = f.read()
+    except FileNotFoundError:
+        print(f"Error: The file '{file_path}' was not found.")
+
 if __name__ == "__main__":
     main()
